@@ -97,7 +97,8 @@ func addRunFlags(cmd *cobra.Command, opts *runOptions) {
 }
 
 func addReportFlags(cmd *cobra.Command, opts *reportOptions) {
-	cmd.PersistentFlags().StringVar(&opts.output, "output", "html", "Output type.")
+	cmd.PersistentFlags().StringVar(&opts.outputType, "output-type", "html", "Output type.")
+	cmd.PersistentFlags().StringVar(&opts.outputFile, "output-file", "", "Output file path.")
 	cmd.PersistentFlags().Var(cliflag.NewMapStringString(&opts.distinctBy), "distinct-by", "If set generates a merged report. The keys are the IDs for the providers which the merged report will include and the values are distinct metadata attributes to be used as IDs for the different reports.")
 }
 
@@ -110,8 +111,18 @@ func reportCmd(args []string, opts reportOptions) error {
 		return errors.New("report command requires a single filepath argument when the distinct-by flag is not set")
 	}
 
-	if opts.output != "html" {
-		return fmt.Errorf("unsuported output format: %s", opts.output)
+	if opts.outputType != "html" {
+		return fmt.Errorf("unsuported output format: %s", opts.outputType)
+	}
+
+	var writer *os.File
+	var err error
+	if len(opts.outputFile) > 0 {
+		if writer, err = os.OpenFile(opts.outputFile, os.O_CREATE|os.O_WRONLY, 0644); err != nil {
+			return fmt.Errorf("failed to create file %s: %w", opts.outputFile, err)
+		}
+	} else {
+		writer = os.Stdout
 	}
 
 	reports := []*report.Report{}
@@ -140,10 +151,10 @@ func reportCmd(args []string, opts reportOptions) error {
 		if err != nil {
 			return err
 		}
-		return htlmRenderer.Render(os.Stdout, mergedReport)
+		return htlmRenderer.Render(writer, mergedReport)
 	}
 
-	return htlmRenderer.Render(os.Stdout, reports[0])
+	return htlmRenderer.Render(writer, reports[0])
 }
 
 func runCmd(ctx context.Context, providerCreateFuncs map[string]provider.ProviderFromConfigFunc, opts runOptions) error {
@@ -269,7 +280,8 @@ type runOptions struct {
 }
 
 type reportOptions struct {
-	output     string
+	outputType string
+	outputFile string
 	distinctBy map[string]string
 }
 
