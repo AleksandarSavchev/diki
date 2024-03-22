@@ -26,7 +26,7 @@
       "datasourceTemplate": "docker"
     },
     {
-      // Generic detection for install manifests from GitHub releases.
+      // Generic detection for nerdctl binary.
       "customType": "regex",
       "fileMatch": ["^Dockerfile$"],
       "matchStrings": [
@@ -40,10 +40,9 @@
     {
       // Group golang updates in one PR.
       "groupName": "golang",
-      "matchDatasources": ["docker", "go-version"],
-      "matchDepNames": ["golang"],
-      // "matchPackageNames": ["golang", "golang/go", "go"],
-      "groupName": "golang updates"
+      // "matchManagers": ["gomod", "regex"],
+      "matchDatasources": ["docker", "go", "golang-version"],
+      "matchPackageNames": ["golang", "golang/go", "go"],
     },
     {
       // Update only patchlevels of major dependencies like kubernetes and controller-runtime.
