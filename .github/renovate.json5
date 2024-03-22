@@ -18,6 +18,24 @@
       "datasourceTemplate": "docker"
     },
     {
+      // Generic detection for pod-like image specifications.
+      "customType": "regex",
+      "fileMatch": ["^\.github\/workflows\/upload-diki-binaries.yaml$"],
+      "matchStrings": ["go-version: '(?<currentValue>.*?)'\\s"],
+      "depNameTemplate": "golang",
+      "datasourceTemplate": "docker"
+    },
+    {
+      // Generic detection for install manifests from GitHub releases.
+      "customType": "regex",
+      "fileMatch": ["^Dockerfile$"],
+      "matchStrings": [
+        "https:\/\/github\\.com\/containerd\/nerdctl\/releases\/download\/.*?\/nerdctl-(?<currentValue>.*?)-linux",
+      ],
+      "depNameTemplate": "containerd/nerdctl",
+      "datasourceTemplate": "github-releases"
+    },
+{
       // Generic detection for install manifests from GitHub releases.
       "customType": "regex",
       "fileMatch": ["^Dockerfile$"],
@@ -33,7 +51,8 @@
       // Group golang updates in one PR.
       "groupName": "golang",
       "matchDatasources": ["docker", "go-version"],
-      "matchPackagePatterns": ["golang"],
+      "matchPackageNames": ["golang", "go"],
+      "groupName": "golang updates"
     },
     {
       // Update only patchlevels of major dependencies like kubernetes and controller-runtime.
