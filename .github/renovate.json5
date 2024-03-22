@@ -40,9 +40,8 @@
     {
       // Group golang updates in one PR.
       "groupName": "golang",
-      // "matchManagers": ["gomod", "regex"],
       "matchDatasources": ["docker", "go", "golang-version"],
-      "matchPackageNames": ["golang", "golang/go", "go"],
+      "matchPackageNames": ["go", "golang"],
     },
     {
       // Update only patchlevels of major dependencies like kubernetes and controller-runtime.
