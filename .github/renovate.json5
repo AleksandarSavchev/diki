@@ -35,7 +35,7 @@
       "depNameTemplate": "containerd/nerdctl",
       "datasourceTemplate": "github-releases"
     },
-{
+    {
       // Generic detection for install manifests from GitHub releases.
       "customType": "regex",
       "fileMatch": ["^Dockerfile$"],
@@ -51,7 +51,7 @@
       // Group golang updates in one PR.
       "groupName": "golang",
       "matchDatasources": ["docker", "go-version"],
-      "matchPackageNames": ["golang", "go"],
+      "matchPackageNames": ["golang", "golang/go"],
       "groupName": "golang updates"
     },
     {
