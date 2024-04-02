@@ -27,7 +27,7 @@ func (r *Rule242400) ID() string {
 }
 
 func (r *Rule242400) Name() string {
-	return "The Kubernetes API server must have Alpha APIs disabled (MEDIUM 242400)"
+	return "The asd Kubernetes API server must have Alpha APIs disabled (MEDIUM 242400)"
 }
 
 func (r *Rule242400) Run(ctx context.Context) (rule.RuleResult, error) {
