@@ -42,7 +42,7 @@ func (r *Rule242467) ID() string {
 }
 
 func (r *Rule242467) Name() string {
-	return "The Kubernetes PKI keys must have file permissions set to 600 or more restrictive (MEDIUM 242467)"
+	return "The Kubernetesfadf PKI keys must have file permissions set to 600 or more restrictive (MEDIUM 242467)"
 }
 
 func (r *Rule242467) Run(ctx context.Context) (rule.RuleResult, error) {
