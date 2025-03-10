@@ -25,13 +25,6 @@ jobs:
           files: 'bin/diki-darwin-amd64;bin/diki-darwin-arm64;bin/diki-linux-amd64;bin/diki-linux-arm64;bin/diki-windows-amd64'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           release-tag: ${{ env.latest_release_filtered_tag }}
-      - name: Get token for gardener-github-pkg-mngr app
-        if: github.event.release.prerelease == false
-        id: gardener-github-workflows
-        uses: getsentry/action-github-app-token@d4b5da6c5e37703f8c3b3e43abb5705b46e159cc # v3.0.0
-        with:
-          app_id: ${{ secrets.GARDENER_GITHUB_WORKFLOW_PKG_MNGR_APP_ID }}
-          private_key: ${{ secrets.GARDENER_GITHUB_WORKFLOW_PKG_MNGR_APP_PRIVATE_KEY }}
       - name: Send update with latest versions to ${{ github.repository_owner }}/homebrew-tap
         if: github.event.release.prerelease == false
         run: |
@@ -44,5 +37,5 @@ jobs:
           echo "${data}"
           curl -X POST https://api.github.com/repos/${{ github.repository_owner }}/homebrew-tap/dispatches \
           -H 'Accept: application/vnd.github.everest-preview+json' \
-          -H "Authorization: Token ${{ steps.gardener-github-workflows.outputs.token }}" \
+          -u "${{ secrets.ACCESS_TOKEN }}" \
           --data "${data}"
