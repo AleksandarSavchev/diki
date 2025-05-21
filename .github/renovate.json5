@@ -13,7 +13,7 @@
     "commands": ["make gen-styles"],
     "fileFilters": ["^hack\/tools\.mk$"],
     "executionMode": "update"
-  }
+  },
   "customManagers": [
     {
       // Generic detection for pod-like image specifications.
