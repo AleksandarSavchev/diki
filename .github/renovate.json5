@@ -9,6 +9,11 @@
   "labels": ["kind/enhancement"],
   "postUpdateOptions": ["gomodTidy"],
   "automergeStrategy": "squash",
+  "postUpgradeTasks": {
+    "commands": ["make gen-styles"],
+    "fileFilters": ["^hack\/tools\.mk$"],
+    "executionMode": "update"
+  }
   "customManagers": [
     {
       // Generic detection for pod-like image specifications.
@@ -46,7 +51,6 @@
       ],
       "depNameTemplate": "tailwindlabs/tailwindcss",
       "datasourceTemplate": "github-releases",
-      "postUpdateOptions": ["exec:make gen-styles"]
     }
   ],
   "packageRules": [
