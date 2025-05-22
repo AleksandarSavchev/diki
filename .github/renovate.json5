@@ -11,7 +11,7 @@
   "automergeStrategy": "squash",
   {
     "allowedCommands": ["^tmake gen-styles$"]
-  }
+  },
   "postUpgradeTasks": {
     "commands": ["make gen-styles"],
     "fileFilters": ["^hack\/tools\.mk$"],
