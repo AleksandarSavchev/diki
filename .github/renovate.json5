@@ -9,7 +9,7 @@
   "labels": ["kind/enhancement"],
   "postUpdateOptions": ["gomodTidy"],
   "automergeStrategy": "squash",
-  "allowedCommands": ["^tmake gen-styles$"],
+  "allowedCommands": ["^make gen-styles$"],
   "postUpgradeTasks": {
     "commands": ["make gen-styles"],
     "fileFilters": ["^hack\/tools\.mk$"],
