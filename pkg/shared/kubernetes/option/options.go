@@ -45,6 +45,7 @@ func (s *ClusterObjectSelector) Validate() field.ErrorList {
 	return allErrs
 }
 
+// Matches returns true if this selector matches the given set of labels.
 func (s *ClusterObjectSelector) Matches(objectLabels map[string]string) (bool, error) {
 	if s.LabelSelector != nil {
 		selector, err := metav1.LabelSelectorAsSelector(s.LabelSelector)
@@ -87,7 +88,7 @@ func (s *NamespacedObjectSelector) Validate() field.ErrorList {
 	if usingLabelSelector && (len(s.MatchLabels) > 0 || len(s.NamespaceMatchLabels) > 0) {
 		allErrs = append(allErrs, field.Forbidden(rootPath, "matchlabels cannot be set when labelSelectors are used"))
 	}
-	if !usingLabelSelector && ((len(s.MatchLabels) == 0 && len(s.NamespaceMatchLabels) > 0) || (len(s.MatchLabels) == 0 && len(s.NamespaceMatchLabels) > 0)) {
+	if !usingLabelSelector && ((len(s.MatchLabels) == 0 && len(s.NamespaceMatchLabels) > 0) || (len(s.MatchLabels) > 0 && len(s.NamespaceMatchLabels) == 0)) {
 		allErrs = append(allErrs, field.Required(rootPath, "both matchLabels and namespaceMatchLabels must be set"))
 	}
 
@@ -98,6 +99,7 @@ func (s *NamespacedObjectSelector) Validate() field.ErrorList {
 	return allErrs
 }
 
+// Matches returns true if this selector matches the given set of labels.
 func (s *NamespacedObjectSelector) Matches(objectLabels map[string]string, namespaceLabels map[string]string) (bool, error) {
 	if s.LabelSelector != nil && s.NamespaceLabelSelector != nil {
 		selector, err := metav1.LabelSelectorAsSelector(s.LabelSelector)
