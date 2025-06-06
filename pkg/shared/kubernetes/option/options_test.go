@@ -246,6 +246,14 @@ var _ = Describe("options", func() {
 				})), PointTo(MatchFields(IgnoreExtras, Fields{
 					"Type":   Equal(field.ErrorTypeRequired),
 					"Field":  Equal("[]"),
+					"Detail": Equal("both matchLabels and namespaceMatchLabels must be set"),
+				})), PointTo(MatchFields(IgnoreExtras, Fields{
+					"Type":   Equal(field.ErrorTypeRequired),
+					"Field":  Equal("[]"),
+					"Detail": Equal("both matchLabels and namespaceMatchLabels must be set"),
+				})), PointTo(MatchFields(IgnoreExtras, Fields{
+					"Type":   Equal(field.ErrorTypeRequired),
+					"Field":  Equal("[]"),
 					"Detail": Equal("both labelSelector and namespaceLabelSelector must be set"),
 				})), PointTo(MatchFields(IgnoreExtras, Fields{
 					"Type":   Equal(field.ErrorTypeRequired),
