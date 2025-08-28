@@ -143,6 +143,8 @@ jobs:
         run: |
           set -euo pipefail
           mkdir /tmp/blobs.d
+          make tidy
+          git diff
           make verify-extended |& tee /tmp/blobs.d/verify-log.txt
           # verify calls `make sast-report`, which generates `gosec-report.sarif`
           tar czf /tmp/blobs.d/verify-log.tar.gz -C /tmp/blobs.d verify-log.txt
