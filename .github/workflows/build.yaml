@@ -130,7 +130,7 @@ jobs:
       ocm-labels: ${{ toJSON(matrix.args.ocm-labels) }}
 
   verify:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     permissions:
       contents: read
     steps:
