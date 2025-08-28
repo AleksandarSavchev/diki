@@ -143,6 +143,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir /tmp/blobs.d
+          go version
           echo $(arch)
           make tidy
           git diff
