@@ -143,7 +143,7 @@ jobs:
           after-import: rebase
       - uses: actions/setup-go@v5
         with:
-          go-version: '1.24'
+          go-version-file: 'go.mod'
       - uses: gardener/cc-utils/.github/actions/setup-git-identity@master
       - name: run-verify
         run: |
