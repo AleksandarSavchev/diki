@@ -150,6 +150,7 @@ jobs:
           set -euo pipefail
           mkdir /tmp/blobs.d
           go version
+          go mod graph
           printenv
           make tidy
           git diff
