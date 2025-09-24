@@ -1,282 +1,282 @@
 providers: # contains information about known providers
-  - id: managedk8s # unique provider identifier
-    name: "Managed Kubernetes" # user friendly name of the provider
-    metadata:
-      foo: bar
-    args:
-      # additionalOpsPodLabels: # pod labels that will be added to diki ops pods
-      #   foo: bar
-      # kubeconfigPath: /tmp/kubeconfig.config  # path to cluster admin kubeconfig
-      # if kubeconfigPath is not set, diki will use the KUBECONFIG env var or try to use in-cluster configuration
+- id: managedk8s # unique provider identifier
+  name: "Managed Kubernetes" # user friendly name of the provider
+  metadata:
+    foo: bar
+  args:
+    # additionalOpsPodLabels: # pod labels that will be added to diki ops pods
+    #   foo: bar
+    # # if kubeconfigPath is not set, diki will use the KUBECONFIG env var or try to use in-cluster configuration
+    # kubeconfigPath: /tmp/kubeconfig.config  # path to cluster admin kubeconfig
     rulesets:
-      - id: disa-kubernetes-stig
-        name: DISA Kubernetes Security Technical Implementation Guide
-        version: v2r3
-        # args:
-        #   maxRetries: 1 # number of maximum rule run retries. Defaults to 1
-        ruleOptions:
-        # - ruleID: "242376"
-        #   skip:
-        #     enabled: true
-        #     justification: "the whole rule is accepted for ... reasons"
-        # - ruleID: "242383"
-        #   args:
-        #     acceptedResources:
-        #     - apiVersion: "v1"
-        #       # if set to "*" match all kinds
-        #       kind: "Pod"
-        #       matchLabels:
-        #         foo: bar
-        #       # only pods in namespaces ["default", "kube-public", "kube-node-lease"] are meaningful to be selected with namespaceMatchLabels
-        #       # since the rule does not perform checks on objects in namespaces different from the listed above
-        #       namespaceMatchLabels:
-        #         kubernetes.io/metadata.name: default
-        #       justification: "justification"
-        #       # relates to the result status in the report
-        #       # can be set to Passed or Accepted. Defaults to Accepted
-        #       status: Passed
-        # - ruleID: "242393"
-        #   args:
-        #     # Diki will group nodes by the value of this label
-        #     # and perform the rule checks on a single node from each group.
-        #     # Skip these labels if you want diki
-        #     # to perform checks on all nodes in the cluster.
-        #     # Mind that not providing a set of labels to group by
-        #     # can slow down the execution of the ruleset and spawn
-        #     # additional pods in the cluster.
-        #     nodeGroupByLabels:
-        #     - foo
-        # - ruleID: "242394"
-        #   args:
-        #     nodeGroupByLabels:
-        #     - foo
-        # - ruleID: "242396"
-        #   args:
-        #     nodeGroupByLabels:
-        #     - foo
-        # - ruleID: "242400"
-        #   args:
-        #     kubeProxyDisabled: true
-        #     kubeProxyMatchLabels:
-        #       foo: bar
-        # - ruleID: "242404"
-        #   args:
-        #     nodeGroupByLabels:
-        #     - foo
-        # - ruleID: "242406"
-        #   args:
-        #     # Node labels used to group nodes by specified
-        #     # label value combinations. Only one node per
-        #     # combination will be tested
-        #     nodeGroupByLabels:
-        #     - foo
-        #     expectedFileOwner:
-        #       users: ["0"]
-        #       groups: ["0"]
-        # - ruleID: "242407"
-        #   args:
-        #     nodeGroupByLabels:
-        #     - foo
-        # - ruleID: "242414"
-        #   args:
-        #     acceptedPods:
-        #     - podMatchLabels:
-        #         label: foo
-        #       namespaceMatchLabels:
-        #         label: foo
-        #       justification: "justification"
-        #       ports:
-        #       - 53
-        # - ruleID: "242415"
-        #   args:
-        #     acceptedPods:
-        #     - podMatchLabels:
-        #         label: foo
-        #       namespaceMatchLabels:
-        #         label: foo
-        #       justification: "justification"
-        #       environmentVariables:
-        #       - FOO_BAR
-        # - ruleID: "242417"
-        #   args:
-        #     acceptedPods:
-        #     - podMatchLabels:
-        #         foo: bar
-        #       # only pods in namespaces ["kube-system", "kube-public", "kube-node-lease"] are meaningful to be selected with namespaceMatchLabels
-        #       # since the rule does not perform checks on objects in namespaces different from the listed above
-        #       namespaceMatchLabels:
-        #         kubernetes.io/metadata.name: kube-system
-        #       justification: "justification"
-        #       # relates to the result status in the report
-        #       # can be set to Passed or Accepted. Defaults to Accepted
-        #       status: Passed
-        # - ruleID: "242442"
-        #   args:
-        #     kubeProxyMatchLabels:
-        #       foo: bar
-        #     expectedVersionedImages:
-        #     - name: "eu.gcr.io/foo"
-        #     - name: "eu.gcr.io/bar"
-        # - ruleID: "242447"
-        #   args:
-        #     kubeProxyMatchLabels:
-        #       foo: bar
-        # - ruleID: "242448"
-        #   args:
-        #     kubeProxyMatchLabels:
-        #       foo: bar
-        #     expectedFileOwner:
-        #       users: ["0"]
-        #       groups: ["0"]
-        # - ruleID: "242449"
-        #   args:
-        #     nodeGroupByLabels:
-        #     - foo
-        # - ruleID: "242450"
-        #   args:
-        #     nodeGroupByLabels:
-        #     - foo
-        #     expectedFileOwner:
-        #       users: ["0"]
-        #       groups: ["0"]
-        # - ruleID: "242451"
-        #   args:
-        #     kubeProxyDisabled: true
-        #     kubeProxyMatchLabels:
-        #       foo: bar
-        #     nodeGroupByLabels:
-        #     - foo
-        #     expectedFileOwner:
-        #       users: ["0"]
-        #       groups: ["0"]
-        # - ruleID: "242452"
-        #   args:
-        #     nodeGroupByLabels:
-        #     - foo
-        # - ruleID: "242453"
-        #   args:
-        #     nodeGroupByLabels:
-        #     - foo
-        #     expectedFileOwner:
-        #       users: ["0"]
-        #       groups: ["0"]
-        # - ruleID: "242466"
-        #   args:
-        #     kubeProxyDisabled: true # skip kube-proxy check
-        #     kubeProxyMatchLabels:
-        #       foo: bar
-        #     nodeGroupByLabels:
-        #     - foo
-        # - ruleID: "242467"
-        #   args:
-        #     kubeProxyDisabled: true # skip kube-proxy check
-        #     kubeProxyMatchLabels:
-        #       foo: bar
-        #     nodeGroupByLabels:
-        #     - foo
-      - id: security-hardened-k8s
-        name: Security Hardened Kubernetes Cluster
-        version: v0.1.0
-        ruleOptions:
-        # - ruleID: "2000"
-        #   skip:
-        #     enabled: true
-        #     justification: "the whole rule is accepted for ... reasons"
-        #   args:
-        #     acceptedNamespaces:
-        #     - matchLabels:
-        #         foo: bar
-        #       justification: "justification"
-        #       acceptedTraffic:
-        #         ingress: true
-        #         egress: true
-        # - ruleID: "2001"
-        #   args:
-        #     acceptedPods:
-        #     - matchLabels:
-        #         foo: bar
-        #       namespaceMatchLabels:
-        #         foo: bar
-        #       justification: "justification"
-        # - ruleID: "2002"
-        #   args:
-        #     acceptedStorageClasses:
-        #     - labelSelector:
-        #         matchLabels:
-        #           foo: bar
-        #       justification: "justification"
-        # - ruleID: "2003"
-        #   args:
-        #     acceptedPods:
-        #     - matchLabels:
-        #         foo: bar
-        #       namespaceMatchLabels:
-        #         foo: bar
-        #       justification: "justification"
-        #       volumeNames:
-        #       - "volume-a"
-        #       - "volume-b"
-        #     - matchLabels:
-        #         foo: baz
-        #       namespaceMatchLabels:
-        #         foo: baz
-        #       justification: "justification"
-        #       volumeNames:
-        #       - "*" # a wildcard can be used to match against all volumes in an accepted pod
-        # - ruleID: "2004"
-        #   args:
-        #     acceptedServices:
-        #     - matchLabels:
-        #         foo: bar
-        #       namespaceMatchLabels:
-        #         foo: bar
-        #       justification: "justification"
-        # - ruleID: "2005"
-        #   args:
-        #     allowedImages:
-        #     - prefix: "example.foo.repository/organisation/releases/"
-        # - ruleID: "2006"
-        #   args:
-        #     acceptedRoles:
-        #     - matchLabels:
-        #         foo: bar
-        #       namespaceMatchLabels:
-        #         foo: bar
-        #       justification: "justification"
-        #     acceptedClusterRoles:
-        #     - matchLabels:
-        #         foo: bar
-        #       justification: "justification"
-        # - ruleID: "2007"
-        #   args:
-        #     acceptedRoles:
-        #     - matchLabels:
-        #         foo: bar
-        #       namespaceMatchLabels:
-        #         foo: bar
-        #       justification: "justification"
-        #     acceptedClusterRoles:
-        #     - matchLabels:
-        #         foo: bar
-        #       justification: "justification"
-        # - ruleID: "2008"
-        #   args:
-        #     acceptedPods:
-        #     - matchLabels:
-        #         foo: bar
-        #       namespaceMatchLabels:
-        #         foo: bar
-        #       justification: "justification"
-        #       volumeNames:
-        #       - "volume-a"
-        #       - "volume-b"
-        #     - matchLabels:
-        #         foo: baz
-        #       namespaceMatchLabels:
-        #         foo: baz
-        #       justification: "justification"
-        #       volumeNames:
-        #       - "*" # a wildcard can be used to match against all volumes in an accepted pod
+    - id: disa-kubernetes-stig
+      name: DISA Kubernetes Security Technical Implementation Guide
+      version: v2r3
+      # args:
+      #   maxRetries: 1 # number of maximum rule run retries. Defaults to 1
+      ruleOptions:
+      # - ruleID: "242376"
+      #   skip:
+      #     enabled: true
+      #     justification: "the whole rule is accepted for ... reasons"
+      # - ruleID: "242383"
+      #   args:
+      #     acceptedResources:
+      #     - apiVersion: "v1"
+      #       # if set to "*" match all kinds
+      #       kind: "Pod"
+      #       matchLabels:
+      #         foo: bar
+      #       # only pods in namespaces ["default", "kube-public", "kube-node-lease"] are meaningful to be selected with namespaceMatchLabels
+      #       # since the rule does not perform checks on objects in namespaces different from the listed above
+      #       namespaceMatchLabels:
+      #         kubernetes.io/metadata.name: default
+      #       justification: "justification"
+      #       # relates to the result status in the report
+      #       # can be set to Passed or Accepted. Defaults to Accepted
+      #       status: Passed
+      # - ruleID: "242393"
+      #   args:
+      #     # Diki will group nodes by the value of this label
+      #     # and perform the rule checks on a single node from each group.
+      #     # Skip these labels if you want diki
+      #     # to perform checks on all nodes in the cluster.
+      #     # Mind that not providing a set of labels to group by
+      #     # can slow down the execution of the ruleset and spawn
+      #     # additional pods in the cluster.
+      #     nodeGroupByLabels:
+      #     - foo
+      # - ruleID: "242394"
+      #   args:
+      #     nodeGroupByLabels:
+      #     - foo
+      # - ruleID: "242396"
+      #   args:
+      #     nodeGroupByLabels:
+      #     - foo
+      # - ruleID: "242400"
+      #   args:
+      #     kubeProxyDisabled: true
+      #     kubeProxyMatchLabels:
+      #       foo: bar
+      # - ruleID: "242404"
+      #   args:
+      #     nodeGroupByLabels:
+      #     - foo
+      # - ruleID: "242406"
+      #   args:
+      #     # Node labels used to group nodes by specified
+      #     # label value combinations. Only one node per
+      #     # combination will be tested
+      #     nodeGroupByLabels:
+      #     - foo
+      #     expectedFileOwner:
+      #       users: ["0"]
+      #       groups: ["0"]
+      # - ruleID: "242407"
+      #   args:
+      #     nodeGroupByLabels:
+      #     - foo
+      # - ruleID: "242414"
+      #   args:
+      #     acceptedPods:
+      #     - podMatchLabels:
+      #         label: foo
+      #       namespaceMatchLabels:
+      #         label: foo
+      #       justification: "justification"
+      #       ports:
+      #       - 53
+      # - ruleID: "242415"
+      #   args:
+      #     acceptedPods:
+      #     - podMatchLabels:
+      #         label: foo
+      #       namespaceMatchLabels:
+      #         label: foo
+      #       justification: "justification"
+      #       environmentVariables:
+      #       - FOO_BAR
+      # - ruleID: "242417"
+      #   args:
+      #     acceptedPods:
+      #     - podMatchLabels:
+      #         foo: bar
+      #       # only pods in namespaces ["kube-system", "kube-public", "kube-node-lease"] are meaningful to be selected with namespaceMatchLabels
+      #       # since the rule does not perform checks on objects in namespaces different from the listed above
+      #       namespaceMatchLabels:
+      #         kubernetes.io/metadata.name: kube-system
+      #       justification: "justification"
+      #       # relates to the result status in the report
+      #       # can be set to Passed or Accepted. Defaults to Accepted
+      #       status: Passed
+      # - ruleID: "242442"
+      #   args:
+      #     kubeProxyMatchLabels:
+      #       foo: bar
+      #     expectedVersionedImages:
+      #     - name: "eu.gcr.io/foo"
+      #     - name: "eu.gcr.io/bar"
+      # - ruleID: "242447"
+      #   args:
+      #     kubeProxyMatchLabels:
+      #       foo: bar
+      # - ruleID: "242448"
+      #   args:
+      #     kubeProxyMatchLabels:
+      #       foo: bar
+      #     expectedFileOwner:
+      #       users: ["0"]
+      #       groups: ["0"]
+      # - ruleID: "242449"
+      #   args:
+      #     nodeGroupByLabels:
+      #     - foo
+      # - ruleID: "242450"
+      #   args:
+      #     nodeGroupByLabels:
+      #     - foo
+      #     expectedFileOwner:
+      #       users: ["0"]
+      #       groups: ["0"]
+      # - ruleID: "242451"
+      #   args:
+      #     kubeProxyDisabled: true
+      #     kubeProxyMatchLabels:
+      #       foo: bar
+      #     nodeGroupByLabels:
+      #     - foo
+      #     expectedFileOwner:
+      #       users: ["0"]
+      #       groups: ["0"]
+      # - ruleID: "242452"
+      #   args:
+      #     nodeGroupByLabels:
+      #     - foo
+      # - ruleID: "242453"
+      #   args:
+      #     nodeGroupByLabels:
+      #     - foo
+      #     expectedFileOwner:
+      #       users: ["0"]
+      #       groups: ["0"]
+      # - ruleID: "242466"
+      #   args:
+      #     kubeProxyDisabled: true # skip kube-proxy check
+      #     kubeProxyMatchLabels:
+      #       foo: bar
+      #     nodeGroupByLabels:
+      #     - foo
+      # - ruleID: "242467"
+      #   args:
+      #     kubeProxyDisabled: true # skip kube-proxy check
+      #     kubeProxyMatchLabels:
+      #       foo: bar
+      #     nodeGroupByLabels:
+      #     - foo
+    - id: security-hardened-k8s
+      name: Security Hardened Kubernetes Cluster
+      version: v0.1.0
+      ruleOptions:
+      # - ruleID: "2000"
+      #   skip:
+      #     enabled: true
+      #     justification: "the whole rule is accepted for ... reasons"
+      #   args:
+      #     acceptedNamespaces:
+      #     - matchLabels:
+      #         foo: bar
+      #       justification: "justification"
+      #       acceptedTraffic:
+      #         ingress: true
+      #         egress: true
+      # - ruleID: "2001"
+      #   args:
+      #     acceptedPods:
+      #     - matchLabels:
+      #         foo: bar
+      #       namespaceMatchLabels:
+      #         foo: bar
+      #       justification: "justification"
+      # - ruleID: "2002"
+      #   args:
+      #     acceptedStorageClasses:
+      #     - labelSelector:
+      #         matchLabels:
+      #           foo: bar
+      #       justification: "justification"
+      # - ruleID: "2003"
+      #   args:
+      #     acceptedPods:
+      #     - matchLabels:
+      #         foo: bar
+      #       namespaceMatchLabels:
+      #         foo: bar
+      #       justification: "justification"
+      #       volumeNames:
+      #       - "volume-a"
+      #       - "volume-b"
+      #     - matchLabels:
+      #         foo: baz
+      #       namespaceMatchLabels:
+      #         foo: baz
+      #       justification: "justification"
+      #       volumeNames:
+      #       - "*" # a wildcard can be used to match against all volumes in an accepted pod
+      # - ruleID: "2004"
+      #   args:
+      #     acceptedServices:
+      #     - matchLabels:
+      #         foo: bar
+      #       namespaceMatchLabels:
+      #         foo: bar
+      #       justification: "justification"
+      # - ruleID: "2005"
+      #   args:
+      #     allowedImages:
+      #     - prefix: "example.foo.repository/organisation/releases/"
+      # - ruleID: "2006"
+      #   args:
+      #     acceptedRoles:
+      #     - matchLabels:
+      #         foo: bar
+      #       namespaceMatchLabels:
+      #         foo: bar
+      #       justification: "justification"
+      #     acceptedClusterRoles:
+      #     - matchLabels:
+      #         foo: bar
+      #       justification: "justification"
+      # - ruleID: "2007"
+      #   args:
+      #     acceptedRoles:
+      #     - matchLabels:
+      #         foo: bar
+      #       namespaceMatchLabels:
+      #         foo: bar
+      #       justification: "justification"
+      #     acceptedClusterRoles:
+      #     - matchLabels:
+      #         foo: bar
+      #       justification: "justification"
+      # - ruleID: "2008"
+      #   args:
+      #     acceptedPods:
+      #     - matchLabels:
+      #         foo: bar
+      #       namespaceMatchLabels:
+      #         foo: bar
+      #       justification: "justification"
+      #       volumeNames:
+      #       - "volume-a"
+      #       - "volume-b"
+      #     - matchLabels:
+      #         foo: baz
+      #       namespaceMatchLabels:
+      #         foo: baz
+      #       justification: "justification"
+      #       volumeNames:
+      #       - "*" # a wildcard can be used to match against all volumes in an accepted pod
 # metadata: # optional, additional metadata to be added to summary json report
 #   foo: bar
 #   bar:
