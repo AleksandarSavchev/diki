@@ -135,10 +135,10 @@ jobs:
     permissions:
       contents: read
     steps:
+      - uses: gardener/cc-utils/.github/actions/trusted-checkout@master
       - uses: actions/setup-go@44694675825211faa026b3c33043df3e48a5fa00  # v6.0.0
         with:
           go-version-file: 'go.mod'
-      - uses: gardener/cc-utils/.github/actions/trusted-checkout@master
       - uses: gardener/cc-utils/.github/actions/setup-git-identity@master
       - name: run-verify
         run: |
