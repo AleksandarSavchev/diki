@@ -12,8 +12,8 @@ require (
 	github.com/gardener/gardener/pkg/apis v1.145.0
 	github.com/go-logr/logr v1.4.3
 	github.com/google/uuid v1.6.0
-	github.com/onsi/ginkgo/v2 v2.32.0
-	github.com/onsi/gomega v1.42.1
+	github.com/onsi/ginkgo/v2 v2.33.0
+	github.com/onsi/gomega v1.43.1
 	github.com/spf13/cobra v1.10.2
 	go.yaml.in/yaml/v4 v4.0.0-rc.6
 	k8s.io/api v0.35.5
@@ -171,7 +171,7 @@ require (
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.28.0 // indirect
 	go.yaml.in/yaml/v2 v2.4.4 // indirect
-	go.yaml.in/yaml/v3 v3.0.4 // indirect
+	go.yaml.in/yaml/v3 v3.0.5 // indirect
 	golang.org/x/crypto v0.53.0 // indirect
 	golang.org/x/exp v0.0.0-20260528193900-50dc527dd6c7 // indirect
 	golang.org/x/mod v0.37.0 // indirect
